@@ -6,7 +6,7 @@
           <b-navbar type="dark" class="main-wrapper" variant>
             <b-navbar-brand href="#">
               <img
-                src="../assets/images/logo.png"
+                src="../assets/images/logo.jpg"
                 class="d-inline-block align-to img-fluid-home ml-0 ml-md-5"
                 alt="logo"
                 width="60px"
