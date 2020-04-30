@@ -71,26 +71,55 @@
     </div>
     <!-- carousel end -->
 
+    <!-- Select category -->
+    <div class="merchant-category">
+      <select v-model="category" class="form-control">
+        <option value class="options">--All Categories--</option>
+        <option value="pm" class="options">Product Merchant</option>
+        <option value="sm" class="options">Service Merchant</option>
+      </select>
+    </div>
+
     <section class="mt-3">
       <!--Service Merchant -->
-      <div class="merchant-category">
-        <h4 class="text-white merchant-header">Product Merchants</h4>
+      <div
+        v-show="category == 'pm' || category == ''"
+        class="merchant-category"
+      >
+        <div class="category-top d-flex justify-content-between">
+          <h4 class="text-white merchant-header">Product Merchants</h4>
+          <div class="dropdown">
+            <b-dropdown
+              id="dropdown-left"
+              text="Sort by Price"
+              variant="info"
+              class="m-2"
+            >
+              <b-dropdown-item @click="highestToLowest"
+                >Lowest to Highest</b-dropdown-item
+              >
+              <b-dropdown-item @click="lowestToHighest"
+                >Highest to Lowest</b-dropdown-item
+              >
+
+              <!-- <b-dropdown-item href="#">Something else here</b-dropdown-item> -->
+            </b-dropdown>
+          </div>
+        </div>
         <div class="row">
           <div
-            v-for="product of products"
-            :key="product"
+            v-for="(product, index) of products"
+            :key="index"
             class="col-6 col-sm-4 mb-3"
           >
-            <!-- <b-card-group columns> -->
             <b-card>
+              <!-- v-lazy="require(`../assets/images/${product.image}.jpg`)" -->
               <b-card-img-lazy
                 :src="require(`../assets/images/${product.image}.jpg`)"
                 :alt="product.image"
-                offset="100"
-              >
-              </b-card-img-lazy>
+              ></b-card-img-lazy>
               <b-card-title>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mt-3">
                   <span>
                     <div class="rating d-none d-lg-block">
                       <span>☆</span>
@@ -100,42 +129,62 @@
                       <span>☆</span>
                     </div>
                   </span>
-                  <span class="text-danger discount">
-                    {{ product.discount }} %</span
+                  <span class="text-danger discount"
+                    >{{ product.discount }} %</span
                   >
                 </div>
               </b-card-title>
-              <b-card-text class="product-desc"
-                >Description : Lorem ipsum dolor sit amet
-                consectetur....</b-card-text
-              >
+              <b-card-text class="product-desc">
+                Description : Lorem ipsum dolor sit amet consectetur....
+              </b-card-text>
               <template v-slot:footer>
                 <small class="text-muted price"
                   >&#8358;{{ product.price }}</small
                 >
               </template>
             </b-card>
-            <!-- </b-card-group> -->
           </div>
         </div>
       </div>
 
-      <!-- Product Merchant -->
-      <div class="merchant-category">
-        <h4 class="text-white merchant-header">Service Merchants</h4>
+      <!-- Service Merchant -->
+      <div
+        v-show="category == 'sm' || category == ''"
+        class="merchant-category"
+      >
+        <div class="category-top d-flex justify-content-between">
+          <h4 class="text-white merchant-header">Service Merchants</h4>
+          <div class="dropdown">
+            <b-dropdown
+              id="dropdown-left"
+              text="Sort by Price"
+              variant="info"
+              class="m-2"
+            >
+              <b-dropdown-item @click="highestToLowest"
+                >Lowest to Highest</b-dropdown-item
+              >
+              <b-dropdown-item @click="lowestToHighest"
+                >Highest to Lowest</b-dropdown-item
+              >
+              <!-- <b-dropdown-item href="#">Something else here</b-dropdown-item> -->
+            </b-dropdown>
+          </div>
+        </div>
         <div class="row">
           <div
-            v-for="product in products"
-            :key="product"
+            v-for="(product, index) in products"
+            :key="index"
             class="col-6 col-sm-4 mb-3"
           >
-            <b-card
-              :img-src="require(`../assets/images/${product.image}.jpg`)"
-              img-alt="Image"
-              img-top
-            >
+            <b-card>
+              <!-- v-lazy="require(`../assets/images/${product.image}.jpg`)" -->
+              <b-card-img-lazy
+                :src="require(`../assets/images/${product.image}.jpg`)"
+                :alt="product.image"
+              ></b-card-img-lazy>
               <b-card-title>
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mt-3">
                   <span>
                     <div class="rating d-none d-lg-block">
                       <span>☆</span>
@@ -145,19 +194,18 @@
                       <span>☆</span>
                     </div>
                   </span>
-                  <span class="text-danger discount">
-                    {{ product.discount }}
-                  </span>
+                  <span class="text-danger discount"
+                    >{{ product.discount }} %</span
+                  >
                 </div>
               </b-card-title>
-              <b-card-text
-                >Description : Lorem ipsum dolor sit amet
-                consectetur....</b-card-text
-              >
+              <b-card-text>
+                Description : Lorem ipsum dolor sit amet consectetur....
+              </b-card-text>
               <template v-slot:footer>
                 <small class="text-muted price"
-                  >&#8358; {{ product.price }}
-                </small>
+                  >&#8358; {{ product.price }}</small
+                >
               </template>
             </b-card>
           </div>
@@ -171,8 +219,6 @@
 import Headernav from '~/components/header.vue'
 import products from '~/assets/product.js'
 
-// console.log(products)
-
 export default {
   name: 'Home',
   components: {
@@ -182,7 +228,8 @@ export default {
     return {
       slide: 0,
       sliding: null,
-      products
+      products,
+      category: ''
     }
   },
   methods: {
@@ -191,6 +238,14 @@ export default {
     },
     onSlideEnd(slide) {
       this.sliding = false
+    },
+    highestToLowest() {
+      const products = this.products
+      return products.sort((a, b) => parseInt(a.price) - parseInt(b.price))
+    },
+    lowestToHighest() {
+      const products = this.products
+      return products.sort((a, b) => parseInt(b.price) - parseInt(a.price))
     }
   }
 }
@@ -209,7 +264,8 @@ export default {
   font-family: 'Montserrat-Medium' !important;
 }
 
-.product-desc {
+.product-desc,
+.options {
   font-family: 'Montserrat-Regular' !important;
 }
 

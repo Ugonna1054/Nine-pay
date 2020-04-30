@@ -12,7 +12,7 @@ const products = [
   {
     image: 'pic3',
     discount: 20,
-    price: '105,500'
+    price: '215,500'
   },
   {
     image: 'pic4',
@@ -62,7 +62,7 @@ const products = [
   {
     image: 'pic13',
     discount: 12,
-    price: '13,000'
+    price: '14,000'
   },
   {
     image: 'pic14',
@@ -102,7 +102,7 @@ const products = [
   {
     image: 'pic21',
     discount: 4,
-    price: '120,999'
+    price: '178,999'
   },
   {
     image: 'pic22',
