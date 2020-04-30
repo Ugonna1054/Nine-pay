@@ -90,7 +90,7 @@
           <h4 class="text-white merchant-header">Product Merchants</h4>
           <div class="dropdown">
             <b-dropdown
-              id="dropdown-left"
+              id="dropdown-right"
               text="Sort by Price"
               variant="info"
               class="m-2"
@@ -130,7 +130,7 @@
                     </div>
                   </span>
                   <span class="text-danger discount"
-                    >{{ product.discount }} %</span
+                    >- {{ product.discount }} %</span
                   >
                 </div>
               </b-card-title>
@@ -156,7 +156,7 @@
           <h4 class="text-white merchant-header">Service Merchants</h4>
           <div class="dropdown">
             <b-dropdown
-              id="dropdown-left"
+              id="dropdown-right"
               text="Sort by Price"
               variant="info"
               class="m-2"
@@ -195,7 +195,7 @@
                     </div>
                   </span>
                   <span class="text-danger discount"
-                    >{{ product.discount }} %</span
+                    >- {{ product.discount }} %</span
                   >
                 </div>
               </b-card-title>
