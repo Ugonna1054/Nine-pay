@@ -75,13 +75,13 @@
     <div class="merchant-category">
       <select v-model="category" class="form-control">
         <option value class="options">--All Categories--</option>
-        <option value="pm" class="options">Product Merchant</option>
-        <option value="sm" class="options">Service Merchant</option>
+        <option value="pm" class="options">Product Merchants</option>
+        <option value="sm" class="options">Service Merchants</option>
       </select>
     </div>
 
     <section class="mt-3">
-      <!--Service Merchant -->
+      <!--Product Merchant -->
       <div
         v-show="category == 'pm' || category == ''"
         class="merchant-category"
@@ -92,6 +92,7 @@
             <b-dropdown
               id="dropdown-right"
               text="Sort by Price"
+              right
               variant="info"
               class="m-2"
             >
@@ -101,8 +102,6 @@
               <b-dropdown-item @click="lowestToHighest"
                 >Highest to Lowest</b-dropdown-item
               >
-
-              <!-- <b-dropdown-item href="#">Something else here</b-dropdown-item> -->
             </b-dropdown>
           </div>
         </div>
@@ -113,7 +112,6 @@
             class="col-6 col-sm-4 mb-3"
           >
             <b-card>
-              <!-- v-lazy="require(`../assets/images/${product.image}.jpg`)" -->
               <b-card-img-lazy
                 :src="require(`../assets/images/${product.image}.jpg`)"
                 :alt="product.image"
@@ -157,6 +155,7 @@
           <div class="dropdown">
             <b-dropdown
               id="dropdown-right"
+              right
               text="Sort by Price"
               variant="info"
               class="m-2"
@@ -167,7 +166,6 @@
               <b-dropdown-item @click="lowestToHighest"
                 >Highest to Lowest</b-dropdown-item
               >
-              <!-- <b-dropdown-item href="#">Something else here</b-dropdown-item> -->
             </b-dropdown>
           </div>
         </div>
@@ -178,7 +176,6 @@
             class="col-6 col-sm-4 mb-3"
           >
             <b-card>
-              <!-- v-lazy="require(`../assets/images/${product.image}.jpg`)" -->
               <b-card-img-lazy
                 :src="require(`../assets/images/${product.image}.jpg`)"
                 :alt="product.image"
