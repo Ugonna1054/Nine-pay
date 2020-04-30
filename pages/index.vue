@@ -25,7 +25,7 @@
           img-alt="pic1"
         ></b-carousel-slide>
 
-        <!-- Slides with custom text -->
+        <!-- Slides with image slot -->
         <b-carousel-slide>
           <template v-slot:img>
             <img
@@ -36,7 +36,7 @@
           </template>
         </b-carousel-slide>
 
-        <!-- Slides with image only -->
+        <!-- Slides with image slot -->
         <b-carousel-slide>
           <template v-slot:img>
             <img
@@ -92,7 +92,7 @@
               <b-card-title>
                 <div class="d-flex justify-content-between">
                   <span>
-                    <div class="rating">
+                    <div class="rating d-none d-lg-block">
                       <span>☆</span>
                       <span>☆</span>
                       <span>☆</span>
@@ -137,7 +137,7 @@
               <b-card-title>
                 <div class="d-flex justify-content-between">
                   <span>
-                    <div class="rating">
+                    <div class="rating d-none d-lg-block">
                       <span>☆</span>
                       <span>☆</span>
                       <span>☆</span>
